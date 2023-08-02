@@ -6,4 +6,5 @@ class Job < ApplicationRecord
     validates :pay, presence: true, numericality: { greater_than_or_equal_to: 0 }
     validates :location, presence: true
     validates :position, presence: true
+    validates :company, presence: true
   end
