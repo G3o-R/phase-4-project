@@ -1,6 +1,6 @@
-class CreateApplications < ActiveRecord::Migration[6.1]
+class CreateJobApplications < ActiveRecord::Migration[6.1]
   def change
-    create_table :applications do |t|
+    create_table :job_applications do |t|
       t.string :email
       t.string :phone_number
       t.references :user, null: false, foreign_key: true
