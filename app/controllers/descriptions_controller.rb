@@ -1,2 +1,0 @@
-class DescriptionsController < ApplicationController
-end
