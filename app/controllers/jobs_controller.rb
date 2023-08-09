@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
     def index
-        render json: {message: "testing"}
+        jobs = Job.all
+        render json: jobs
     end
 end
