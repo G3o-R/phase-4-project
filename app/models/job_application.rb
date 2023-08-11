@@ -4,4 +4,5 @@ class JobApplication < ApplicationRecord
 
   validates :email, presence: true
   validates :phone_number, presence: true
+  validates :status, presence: true
 end
