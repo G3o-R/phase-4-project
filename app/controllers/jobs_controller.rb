@@ -7,4 +7,9 @@ class JobsController < ApplicationController
         job = Job.find(params[:id])
         render json: job
     end
+    def destroy
+        job = Job.find(params[:id])
+        job.destroy
+        head :no_content
+    end
 end
