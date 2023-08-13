@@ -59,5 +59,6 @@ Job.create!([
       company: "ContentCo"
     }
   ])
+  
 
   puts "done seeding..."
