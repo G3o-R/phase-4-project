@@ -1,4 +1,5 @@
 class JobApplicationsController < ApplicationController
+    # skip_before_action :authorize, only: [:index]
     def create
         job_applications = JobApplication.create!(application_params)
     end

@@ -1,0 +1,19 @@
+.header{
+    display: flex;
+    justify-content: center;
+
+    .navbar{
+        display: flex;
+        justify-content: center;
+        border: 1px solid black;
+        align-items: center;
+        border-radius: 50px 50px 50px 50px;
+        height: 40px;
+        width: fit-content;
+        .link{
+            text-decoration: none;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+}
