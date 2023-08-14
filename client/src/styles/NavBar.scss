@@ -1,19 +1,25 @@
-.header{
-    display: flex;
-    justify-content: center;
+.navbar{
+    display:flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    width: 100%;
+    max-height: 70px;
+    background-color: bisque;
 
-    .navbar{
+    .navbar-left{
+
+        .jobs-svg{
+            width: 40px;
+            padding-right:5px ;
+            padding-bottom: 15px;
+        }
+
+        padding-left: 1rem;
         display: flex;
         justify-content: center;
-        border: 1px solid black;
-        align-items: center;
-        border-radius: 50px 50px 50px 50px;
-        height: 40px;
-        width: fit-content;
-        .link{
-            text-decoration: none;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
+    }
+
+    .navbar-right{
+        padding-right: 3rem;
     }
 }

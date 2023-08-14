@@ -1,15 +1,19 @@
 import "../styles/NavBar.scss"
 import { NavLink } from "react-router-dom"
+import logo from "../job-search-svgrepo-com.svg"
 
 function NavBar(){
     return(
-        <div className="header">
             <div className="navbar">
-                <NavLink to="/" className="link">Jobs</NavLink>
+                <div className="navbar-left">
+                <NavLink to="/jobs" className="link"><img src={logo} className="jobs-svg" /></NavLink>
+                </div>
+                <div className="navbar-right">
+                    <NavLink to="/login" className="link">Login</NavLink>
+                </div>
                 {/* <NavLink to="/companies" className="link">Company Lists</NavLink> */}
                 {/* <NavLink to="/create-company-job" className="link">Create Company/Job</NavLink> */}
             </div>
-        </div>
     )
 }
 
