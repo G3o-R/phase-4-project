@@ -1,7 +1,7 @@
 import "../styles/JobCard.scss"
 
 function JobCard({job}){
-    const {company, description, location, pay, position, id} = job
+    const {company, description, location, pay, position} = job
     return(
         <div className="job-card" style={cardStyle}>
             <h3>{position}</h3>

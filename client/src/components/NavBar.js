@@ -9,6 +9,7 @@ function NavBar(){
                 <NavLink to="/" className="link"><img src={logo} className="jobs-svg" /></NavLink>
                 </div>
                 <div className="navbar-right">
+                    <NavLink to="/my-jobs" style={{paddingRight: "1rem"}}>My Jobs</NavLink>
                     <NavLink to="/login" className="link">Login</NavLink>
                 </div>
                 {/* <NavLink to="/companies" className="link">Company Lists</NavLink> */}

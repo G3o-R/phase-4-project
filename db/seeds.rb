@@ -12,7 +12,7 @@ Job.create!([
   {
     description: "Software Engineer",
     pay: 80000.0,
-    location: 37.7749,
+    location: "Santa Monica California",
     position: "Full Stack",
     company: "TechCo",
     about_the_job: "We're looking for an experienced software engineer to join our dynamic team..."
@@ -20,7 +20,7 @@ Job.create!([
   {
     description: "Graphic Designer",
     pay: 50000.0,
-    location: 34.0522,
+    location: "Santa Monica California",
     position: "UI/UX",
     company: "DesignHub",
     about_the_job: "DesignHub is seeking a talented graphic designer to create visually stunning..."
@@ -28,7 +28,7 @@ Job.create!([
   {
     description: "Marketing Manager",
     pay: 70000.0,
-    location: 40.7128,
+    location: "Remote",
     position: "Marketing",
     company: "AdAgency",
     about_the_job: "AdAgency is in search of a skilled marketing manager to lead our promotional efforts..."
@@ -36,7 +36,7 @@ Job.create!([
   {
     description: "Data Analyst",
     pay: 60000.0,
-    location: 41.8781,
+    location: "Santa Monica California",
     position: "Analytics",
     company: "DataCorp",
     about_the_job: "DataCorp is hiring a data analyst to analyze and interpret complex datasets..."
@@ -44,7 +44,7 @@ Job.create!([
   {
     description: "Sales Representative",
     pay: 55000.0,
-    location: 39.9526,
+    location: "Santa Monica California",
     position: "Sales",
     company: "SalesCo",
     about_the_job: "SalesCo needs a motivated sales representative to build relationships with clients..."
@@ -52,7 +52,7 @@ Job.create!([
   {
     description: "Product Manager",
     pay: 75000.0,
-    location: 36.7783,
+    location: "Santa Monica California",
     position: "Product",
     company: "ProductTech",
     about_the_job: "ProductTech is seeking an experienced product manager to oversee product development..."
@@ -60,7 +60,7 @@ Job.create!([
   {
     description: "Content Writer",
     pay: 45000.0,
-    location: 33.6846,
+    location: "Hybrid",
     position: "Content",
     company: "ContentCo",
     about_the_job: "ContentCo is looking for a creative content writer to generate engaging written content..."

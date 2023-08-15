@@ -4,7 +4,7 @@ import JobCard from "./JobCard"
 function Home({jobs}){
     console.log(jobs)    
     const jobsToDisplay = jobs.map((job)=>(
-        <JobCard job={job} />
+        <JobCard job={job} key={job.id}/>
     ))
     
     return(
