@@ -12,6 +12,11 @@ function Home({jobs}){
             <div className="job-collection" style={collectionStyle}>
                 {jobsToDisplay}
             </div>
+            <div className="job-display-container">
+                <div className="job-display">
+                    
+                </div>
+            </div>
         </div>
     )
 }
