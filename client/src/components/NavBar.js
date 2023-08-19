@@ -6,7 +6,7 @@ function NavBar(){
     return(
             <div className="navbar">
                 <div className="navbar-left">
-                <NavLink to="/" className="link"><img src={logo} className="jobs-svg" /></NavLink>
+                <NavLink to="/" className="link"><img src={logo} alt="job png" className="jobs-svg" /></NavLink>
                 </div>
                 <div className="navbar-right">
                     <NavLink to="/my-jobs" style={{paddingRight: "1rem"}}>My Jobs</NavLink>

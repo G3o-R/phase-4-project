@@ -8,11 +8,10 @@ function JobCard({job, setIndex}){
             <h3>{position}</h3>
             <p>{description}</p>
             <p>{company}</p>
-            <p>address here</p>
+            <p>{location}</p>
             <p>{pay}</p>
         </div>
     )
-    debugger
 }
 
 export default JobCard

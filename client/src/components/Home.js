@@ -13,9 +13,6 @@ function Home({jobs}){
             setJobDisplay(jobs.find((job)=>job.id === jobs[0].id))
         }
     },[jobs])
-    console.log(jobDisplay)
-
-    
     
     // console.log(jobDisplay)
     const jobsToDisplay = jobs.map((job)=>(
@@ -49,5 +46,3 @@ const homeContainerStyle = {
     gap:"4rem",
     justifyContent:"center"
 }
-
-const jobDisplayContainerStyle = {}
