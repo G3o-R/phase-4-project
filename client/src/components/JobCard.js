@@ -1,11 +1,10 @@
 import "../styles/JobCard.scss"
-import { useState } from "react"
 
-function JobCard({job}){
+function JobCard({job, setIndex}){
     const {company, description, location, pay, position} = job
-    
+
     return(
-        <div className="job-card" style={cardStyle} onClick={()=>console.log(job.id)}>
+        <div className="job-card" style={cardStyle} onClick={()=>setIndex(job)}>
             <h3>{position}</h3>
             <p>{description}</p>
             <p>{company}</p>
@@ -13,6 +12,7 @@ function JobCard({job}){
             <p>{pay}</p>
         </div>
     )
+    debugger
 }
 
 export default JobCard
