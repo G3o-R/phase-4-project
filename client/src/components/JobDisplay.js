@@ -27,7 +27,7 @@ const displayStyles = {
     display:"flex",
     flexDirection:"column",
     alignItems:"flex-start",
-    border: "1pxsolid black",
+    border: "1px solid black",
     borderRadius: "10px 10px 0px 0px",
     paddingLeft:"10px"
 }
