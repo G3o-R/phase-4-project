@@ -8,7 +8,7 @@ function SignupForm(){
         password: "",
         password_confirmation: ""
     })
-
+    const [errors, setErrors] = useState([])
     const {username, password, password_confirmation} = signupData
     
     function handleChange(e){
@@ -20,7 +20,22 @@ function SignupForm(){
 
     function handleCreateAccountSubmit(e){
         e.preventDefault()
-        console.log(signupData)
+        fetch("/signup",{
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json",
+            },
+            body: JSON.stringify(signupData)
+        })
+        // make sure you're able to recieve errors here. utilize r.ok and setErrors
+        .then((res)=> {
+            if (res.ok){
+                res.json().then((user)=>console.log(user))
+            } else {
+                res.json().then((err) => setErrors(err))
+            }
+
+        })
     }
 
     return(
