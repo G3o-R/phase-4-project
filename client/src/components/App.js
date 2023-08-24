@@ -6,7 +6,7 @@ import { BrowserRouter, Routes,Route} from 'react-router-dom';
 import NavBar from './NavBar';
 import Home from './Home';
 import LoginForm from './LogInForm';
-
+import SignupForm from './SignupForm';
 
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home jobs={jobsData}/>} />
         <Route path="/login" element={<LoginForm/>} />
+        <Route path="/signup" element={<SignupForm/>} />
       </Routes>
       </BrowserRouter>
     </div>

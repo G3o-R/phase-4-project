@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 function LoginForm(){
 
@@ -27,7 +28,7 @@ function LoginForm(){
                 <label>Password</label>
                 <input type="text" name="password" value={password} placeholder="password..." onChange={handleChange}/>
             </form>
-            
+            <Link to={"/signup"}>signup instead</Link>
         </div>
         </div>
     )
@@ -43,9 +44,10 @@ const formContainerStyle ={
     marginTop:"3rem",
     backgroundColor:"bisque",
     width:"30rem",
-    aspectRatio:"5/8",
-    justifySelf: "center",
+    aspectRatio:"5/7",
+    justifyContent: "center",
     borderRadius: "10px 10px 10px 10px",
+    paddingTop: "5rem",
 }
 
 const formStyle = {
