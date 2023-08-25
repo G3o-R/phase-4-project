@@ -11,12 +11,21 @@ import SignupForm from './SignupForm';
 
 function App() {
   const [jobsData, setJobs] = useState([])
+  const [user, setUser] = useState(null)
 
   useEffect(()=>{
     fetch("/jobs")
     .then((res)=>res.json())
     .then(jobs=>setJobs(jobs))
+
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => setUser(user))
+      }
+    })
   },[])
+
+  console.log(user)
 
   return (
     <div className="App">
