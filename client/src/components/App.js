@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar />
+      <NavBar user={user}/>
       <Routes>
         <Route path="/" element={<Home jobs={jobsData}/>} />
         <Route path="/login" element={<LoginForm/>} />
