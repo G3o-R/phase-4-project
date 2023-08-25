@@ -8,6 +8,8 @@ function LoginForm(){
         password: ""
     })
 
+    const [errors, setErrors] = useState([])
+
     const {password, username} = loginFormData
 
     function handleChange(e){
@@ -18,15 +20,33 @@ function LoginForm(){
         console.log(loginFormData)
     }
 
+    function handleLoginSubmit(e){
+        e.preventDefault()
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(loginFormData),
+        }).then((res) => {
+            if (res.ok) {
+                res.json().then((user) => console.log(user))
+            } else {
+                res.json().then((err) => setErrors(err.errors))
+            }
+        })
+    }
+
 
     return(
         <div className="login" style={loginStyle}>
         <div style={formContainerStyle}>
-            <form style={formStyle}>
+            <form style={formStyle} onSubmit={handleLoginSubmit}>
                 <label>Username</label>
                 <input type="text" name="username" value={username} placeholder="username..." onChange={handleChange}/>
                 <label>Password</label>
                 <input type="text" name="password" value={password} placeholder="password..." onChange={handleChange}/>
+                <button type="submit">Login</button> 
             </form>
             <Link to={"/signup"}>signup instead</Link>
         </div>
