@@ -30,11 +30,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar user={user}/>
+      <NavBar user={user} setUser={setUser}/>
       <Routes>
         <Route path="/" element={<Home jobs={jobsData}/>} />
-        <Route path="/login" element={<LoginForm/>} />
-        <Route path="/signup" element={<SignupForm/>} />
+        <Route path="/login" element={<LoginForm setUser={setUser}/>} />
+        <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
       </Routes>
       </BrowserRouter>
     </div>

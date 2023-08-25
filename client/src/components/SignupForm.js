@@ -1,8 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
+function SignupForm({setUser}){
 
-function SignupForm(){
+    const navigate = useNavigate()
+
     const [signupData, setSignupData] = useState({
         username: "",
         password: "",
@@ -30,7 +33,7 @@ function SignupForm(){
         // make sure you're able to recieve errors here. utilize r.ok and setErrors
         .then((res)=> {
             if (res.ok){
-                res.json().then((user)=>console.log(user))
+                res.json().then((user)=> setUser(user)).then(()=>navigate("/"))
             } else {
                 res.json().then((err) => setErrors(err))
             }

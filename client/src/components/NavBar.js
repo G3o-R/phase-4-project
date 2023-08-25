@@ -2,12 +2,18 @@ import "../styles/NavBar.scss"
 import { NavLink } from "react-router-dom"
 import logo from "../job-search-svgrepo-com.svg"
 
-function NavBar({user}){
+function NavBar({user, setUser}){
 
     const isLoggedIn = user === null ? false : true
 
     function handleLogout(){
-
+        fetch("/logout",{
+            method: "DELETE"
+        }).then((res) => {
+            if (res.ok) {
+                setUser(null)
+            }
+        })
     }
     return(
             <div className="navbar">

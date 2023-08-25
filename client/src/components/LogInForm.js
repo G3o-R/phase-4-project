@@ -1,7 +1,9 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
-function LoginForm(){
+function LoginForm({setUser}){
+    const navigate = useNavigate()
 
     const [loginFormData, setLoginForm] = useState({
         username: "",
@@ -30,7 +32,7 @@ function LoginForm(){
             body: JSON.stringify(loginFormData),
         }).then((res) => {
             if (res.ok) {
-                res.json().then((user) => console.log(user))
+                res.json().then((user) => setUser(user)).then(()=>navigate("/"))
             } else {
                 res.json().then((err) => setErrors(err.errors))
             }
