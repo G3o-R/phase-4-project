@@ -1,9 +1,8 @@
 class JobApplicationsController < ApplicationController
-    # skip_before_action :authorize, only: [:index]
+    before_action :authorize
     def create
         job_applications = JobApplication.create!(application_params)
     end
-    # read will be handled by an "includes" in user
 
     def update 
         job_application = Job.find(params[:id])

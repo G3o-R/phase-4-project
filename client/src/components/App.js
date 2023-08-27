@@ -32,7 +32,7 @@ function App() {
       <BrowserRouter>
       <NavBar user={user} setUser={setUser}/>
       <Routes>
-        <Route path="/" element={<Home jobs={jobsData}/>} />
+        <Route path="/" element={<Home jobs={jobsData} user={user}/>} />
         <Route path="/login" element={<LoginForm setUser={setUser}/>} />
         <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
       </Routes>

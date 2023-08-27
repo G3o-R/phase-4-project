@@ -1,10 +1,18 @@
+import { useNavigate } from "react-router"
 
-
-function JobDisplay({job}){
+function JobDisplay({job, user}){
     const {description, pay, location, position, company, about_the_job} = job
+    const navigate = useNavigate()
+
     function handleApply(){
-        console.log(`apply for ${position} position`)
+        if (user){
+            console.log(`${user.username} applied for ${position} position`)
+        } else {
+            alert("you have to login")
+            navigate("/login")
+        }
     }
+
     return(<div style={{
     border: "1px solid black",
     borderRadius:"10px 10px 10px 10px",

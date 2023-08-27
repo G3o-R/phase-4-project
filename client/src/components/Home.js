@@ -4,7 +4,7 @@ import JobDisplay from "./JobDisplay"
 import { useState } from "react"
 import { useEffect } from "react"
 
-function Home({jobs}){
+function Home({jobs, user}){
     // console.log(jobs)
     const [jobDisplay, setJobDisplay] = useState(false)
 
@@ -27,7 +27,7 @@ function Home({jobs}){
             <div className="job-collection" style={collectionStyle}>
                 {jobsToDisplay}
             </div>
-                {!jobDisplay ? <h1>loading...</h1> : <JobDisplay job={jobDisplay}/>}
+                {!jobDisplay ? <h1>loading...</h1> : <JobDisplay job={jobDisplay} user={user}/>}
         </div>
     )
 }
