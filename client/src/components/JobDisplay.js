@@ -7,12 +7,12 @@ function JobDisplay({job, user}){
     const [showIsOn, setShowIsOn] = useState(false)
     const [email, setEmail] = useState("")
     const [phone_number, setPhoneNumber] = useState("")
+    
 
     const navigate = useNavigate()
 
-    function handleApply(){
+    function showContactForm(){
         if (user){
-            console.log(`${user.username} applied to ${position}`)
             setShowIsOn(!showIsOn)
         } else {
             alert("you have to login")
@@ -25,9 +25,15 @@ function JobDisplay({job, user}){
         const contactData = {
             email: email,
             phone_number: phone_number,
-            user_id: user.id,
             job_id: job.id
         }
+        fetch("/job_applications",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(contactData),
+        })
+        .then((r)=>r.json())
+        .then((job)=>console.log(job))
         console.log(contactData)
     }
 
@@ -43,7 +49,7 @@ function JobDisplay({job, user}){
             <p style={{marginBottom:"2px",marginTop:"0"}}>{company}</p>
             <p style={{marginBottom:"2px",marginTop:"0"}}>{location}</p>
             <p style={{marginBottom:"2px",marginTop:"0"}}>{pay}</p>
-            <button onClick={handleApply} className="apply-now" style={{width:"80px"}}>Apply Now</button>
+            <button onClick={showContactForm} className="apply-now" style={{width:"80px"}}>Interested?</button>
         </div>
             <p>{about_the_job}</p>
             {showIsOn? <div className="apply-form">
