@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2023_08_15_222252) do
   create_table "job_applications", force: :cascade do |t|
     t.string "email"
     t.string "phone_number"
+    t.string "status", default: "Applied"
     t.bigint "user_id", null: false
     t.bigint "job_id", null: false
     t.datetime "created_at", precision: 6, null: false

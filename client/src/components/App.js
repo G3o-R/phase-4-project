@@ -7,6 +7,7 @@ import NavBar from './NavBar';
 import Home from './Home';
 import LoginForm from './LogInForm';
 import SignupForm from './SignupForm';
+import MyJobs from './MyJobs';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
 
     fetch("/me").then((res) => {
       if (res.ok) {
-        res.json().then((user) => setUser(user))
+        res.json().then((user) => console.log(user))
       }
     })
   },[])
@@ -31,6 +32,7 @@ function App() {
       <NavBar user={user} setUser={setUser}/>
       <Routes>
         <Route path="/" element={<Home jobs={jobsData} user={user}/>} />
+        <Route path="my-jobs" element={<MyJobs user={user}/>} />
         <Route path="/login" element={<LoginForm setUser={setUser}/>} />
         <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
       </Routes>
