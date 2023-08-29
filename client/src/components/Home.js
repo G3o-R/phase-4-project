@@ -5,7 +5,6 @@ import { useState } from "react"
 import { useEffect } from "react"
 
 function Home({jobs, user}){
-    // console.log(jobs)
     const [jobDisplay, setJobDisplay] = useState(false)
 
     useEffect(()=>{

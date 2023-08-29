@@ -1,16 +1,34 @@
+import { useState } from "react"
 import { useNavigate } from "react-router"
 
 function JobDisplay({job, user}){
     const {description, pay, location, position, company, about_the_job} = job
+    
+    const [showIsOn, setShowIsOn] = useState(false)
+    const [email, setEmail] = useState("")
+    const [phone_number, setPhoneNumber] = useState("")
+
     const navigate = useNavigate()
 
     function handleApply(){
         if (user){
-            console.log(`${user.username} applied for ${position} position`)
+            console.log(`${user.username} applied to ${position}`)
+            setShowIsOn(!showIsOn)
         } else {
             alert("you have to login")
             navigate("/login")
         }
+    }
+
+    function handleApplySubmit(e){
+        e.preventDefault()
+        const contactData = {
+            email: email,
+            phone_number: phone_number,
+            user_id: user.id,
+            job_id: job.id
+        }
+        console.log(contactData)
     }
 
     return(<div style={{
@@ -19,7 +37,7 @@ function JobDisplay({job, user}){
     width:"25rem",
     height: "60rem",
     }}>
-             <div className="job-card" style={displayStyles}>
+        <div className="job-card" style={displayStyles}>
             <h3 style={{marginBottom:"2px"}}>{position}</h3>
             <p style={{marginBottom:"2px",marginTop:"0"}}>{description}</p>
             <p style={{marginBottom:"2px",marginTop:"0"}}>{company}</p>
@@ -27,7 +45,15 @@ function JobDisplay({job, user}){
             <p style={{marginBottom:"2px",marginTop:"0"}}>{pay}</p>
             <button onClick={handleApply} className="apply-now" style={{width:"80px"}}>Apply Now</button>
         </div>
-        <p>{about_the_job}</p>
+            <p>{about_the_job}</p>
+            {showIsOn? <div className="apply-form">
+                <p>please enter your contact information</p>
+                <form className="contact-from" onSubmit={handleApplySubmit}>
+                    <input type="text" name="email" value={email} placeholder="email..." onChange={(e)=>setEmail(e.target.value)} />
+                    <input type="text" name="phone_number" value={phone_number} placeholder="phone number..." onChange={(e)=>setPhoneNumber(e.target.value)} />
+                    <button type="submit">Complete Application</button>
+                </form>
+            </div> : null}
     </div>)
 }
 

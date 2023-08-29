@@ -1,7 +1,8 @@
 class JobApplicationsController < ApplicationController
     before_action :authorize
     def create
-        job_applications = JobApplication.create!(application_params)
+        job_applications = @current_user.job_applications.create!(application_params)
+        render json: job_applications
     end
 
     def update 
@@ -18,7 +19,7 @@ class JobApplicationsController < ApplicationController
 
     private
     def application_params
-        params.permit(:email, :phone_number, :user_id, :job_id, :status)
+        params.permit(:email, :phone_number, :job_id, :status)
     end
 
 end
