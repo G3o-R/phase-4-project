@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     end
     
     def show
-        render json: @current_user
+        render json: @current_user, include: :jobs
     end
     
 
