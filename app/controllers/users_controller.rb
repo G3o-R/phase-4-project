@@ -7,9 +7,11 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         render json: user, status: :created
     end
+    # what I want is to recieve the User, and it's related job_applications
+    # as well as job
     
     def show
-        render json: @current_user, include: :jobs
+        render json: @current_user
     end
     
 

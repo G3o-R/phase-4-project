@@ -5,6 +5,10 @@ class JobApplicationsController < ApplicationController
         render json: job_applications
     end
 
+    def index
+        render json: JobApplication.all
+    end
+
     def update 
         job_application = Job.find(params[:id])
         job_application.update(application_params)

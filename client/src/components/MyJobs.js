@@ -1,20 +1,13 @@
-import { useState } from "react"
-import { useEffect } from "react"
+import MyJobCard from "./MyJobCard"
 
 function MyJobs({user}){
-    const [myJobs, setMyJobs] = useState([])
-// console.log(user.jobs)
-    useEffect(()=>{
-        if (user){
-            setMyJobs(user.jobs)
-        }
-    },[user])
-    console.log(myJobs)
-    const displayJobs = myJobs.map((job)=><h1>{job.description}</h1>)
+   
+    console.log(user)
+    const displayMyJobCards = user.job_applications.map((job_application)=><MyJobCard job_application={job_application} key={job_application.id}/>)
 
     return(
         <div className="my-jobs">
-            {!user ? <h1>Login and get hired!</h1>: (user.jobs == false ? <h1>Start Applying!!!</h1>: displayJobs)}
+            {!user ? <h1>Login and get hired!</h1>: (user.jobs == false ? <h1>Start Applying!!!</h1>: displayMyJobCards)}
         </div>
     )
 }

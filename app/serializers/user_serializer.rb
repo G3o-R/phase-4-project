@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest
+  attributes :id, :username
 
   has_many :job_applications
-  has_many :jobs, through: :job_applications
+  has_many :jobs
 end
