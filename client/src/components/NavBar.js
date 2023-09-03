@@ -10,7 +10,7 @@ const NavbarContainer = styled.div`
   padding-top: 15px;
   width: 100%;
   background-color: #f1f1f14d;
-  border-bottom: 1px solid lightgrey; /* Add a grey bottom border */
+  border-bottom: 1px solid lightgrey;
 `;
 
 const NavbarLeft = styled.div`
@@ -50,7 +50,6 @@ const NavLinkBig = styled(NavLinkStyled)`
   border-radius: 50%;
   background-color: rgba(173, 216, 230, 0);
 
-  /* Add styles for the underline */
   position: relative;
   text-decoration: none;
 
@@ -59,17 +58,16 @@ const NavLinkBig = styled(NavLinkStyled)`
     display: block;
     position: absolute;
     left: 0;
-    bottom: 0;
     width: 100%;
-    height: 2px; /* Adjust the height of the underline as needed */
-    background-color: blue; /* Set the color of the underline */
-    transform: scaleX(0); /* Initially, set the underline's width to zero */
+    height: 2px;
+    background-color: blue;
+    transform: scaleX(0);
     transform-origin: center;
-    transition: transform 0.2s ease-in-out; /* Add a transition for smooth animation */
+    transition: transform 0.2s ease-in-out;
   }
 
   &:focus::after {
-    transform: scaleX(1); /* Expand the underline when the link is focused */
+    transform: scaleX(1);
   }
 `;
 

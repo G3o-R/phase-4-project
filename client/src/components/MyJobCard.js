@@ -113,7 +113,7 @@ const UpdateStatusButton = styled.button`
 `;
 
 
-function MyJobCard({ job_application }) {
+function MyJobCard({ job_application, setErrors }) {
   const { company, description, location, position, id } = job_application;
   const { user, setUser } = useContext(Context);
   const [showUpdateDrop, setShowUpdateDrop] = useState(false);
@@ -153,8 +153,7 @@ function MyJobCard({ job_application }) {
         if (r.ok) {
           setJobData({ ...jobData, [name]: value });
         } else {
-          // don't forget to include an error!!!!!!!!!!!!!!!
-          console.log('Update failed');
+          alert("wasn't able to update job status")
         }
       })
     setShowUpdateDrop(false);
@@ -179,10 +178,10 @@ function MyJobCard({ job_application }) {
         if (r.ok) {
           r.json().then((editedJob)=>{
             setJobData(editedJob) 
-            setShowContactForm(false)});
+            setShowContactForm(false)})
+            setErrors([])
         } else {
-          // don't forget to include an error!!!!!!!!!!!!!!!
-          r.json().then((err)=> console.log(err))
+          r.json().then((err)=>setErrors(err.errors))
         }
       })
 

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// Define a styled component for the JobCard
 const JobCardContainer = styled.div`
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
@@ -11,8 +10,8 @@ const JobCardContainer = styled.div`
   margin: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
-  width: 200px; /* Adjust the width as needed */
-  height: 200px; /* Make it square by setting the same height as width */
+  width: 200px;
+  height: 200px;
 
   &:hover {
     background-color: #f0f0f0;

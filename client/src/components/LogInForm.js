@@ -6,12 +6,12 @@ import styled from "styled-components";
 const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
-  background-color: #f0f0f0; /* Set the background color to match JobCards */
-  min-height: 100vh; /* Ensure the login form takes up the full viewport height */
+  background-color: #f0f0f0;
+  min-height: 100vh;
 `;
 
 const FormContainer = styled.div`
-  background-color: #ffffff; /* Background color for the login form */
+  background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

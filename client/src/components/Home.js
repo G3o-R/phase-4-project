@@ -1,7 +1,7 @@
 import JobCard from "./JobCard";
 import JobDisplay from "./JobDisplay";
 import { useState, useEffect } from "react";
-import styled from "styled-components"; // Import styled-components
+import styled from "styled-components";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const JobCollection = styled.div`
 
 const JobDisplayContainer = styled.div`
   position: sticky;
-  top: 20px; /* Adjust the top value as needed */
+  top: 20px;
   border-radius: 10px;
   width: 25rem;
   height: 60rem;
