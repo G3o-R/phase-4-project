@@ -35,7 +35,7 @@ function SignupForm({setUser}){
             if (res.ok){
                 res.json().then((user)=> setUser(user)).then(()=>navigate("/"))
             } else {
-                res.json().then((err) => setErrors(err))
+                res.json().then((err) => setErrors(err.errors))
             }
 
         })
@@ -54,6 +54,7 @@ function SignupForm({setUser}){
                     <button type="submit">Create Account</button> 
                 </form>
                 <Link to={"/login"}>login instead</Link>
+            {errors.map((error)=><p>{error}</p>)}
             </div>
         </div>
     )

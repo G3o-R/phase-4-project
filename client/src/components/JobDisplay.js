@@ -42,7 +42,7 @@ function JobDisplay({job}){
         .then((r)=>{ if (r.ok){
             r.json().then((application)=>handleNewApplication(application))
         } else{
-            r.json().then((err)=>setErrors(err))
+            r.json().then((err)=>setErrors(err.errors))
         }})
     }
 
@@ -69,7 +69,7 @@ function JobDisplay({job}){
                     <button type="submit">Complete Application</button>
                 </form>
             </div> : null}
-            {/* {errors ? errors.map(()=><h4>{errors}</h4>) : null} */}
+            {errors.map((error)=>(<p>{error}</p>))}
     </div>)
 }
 

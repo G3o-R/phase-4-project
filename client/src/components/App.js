@@ -8,6 +8,12 @@ import Home from './Home';
 import LoginForm from './LogInForm';
 import SignupForm from './SignupForm';
 import MyJobs from './MyJobs';
+/* 
+implement displaying errors for signing up with invalid data, X
+logging in with invalid data X
+not providing contact information when applying to a job X
+and figure out why editing a job doesn't supply errors when contact info is invalid
+*/
 
 
 function App() {

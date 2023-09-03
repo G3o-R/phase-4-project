@@ -122,7 +122,8 @@ function MyJobCard({ job_application }) {
   const [jobData, setJobData] = useState({
     email: "",
     phone_number: "",
-    status: ""    
+    status: "",
+    id  
   });
 
   const { email, phone_number, status } = jobData;
@@ -175,13 +176,14 @@ function MyJobCard({ job_application }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(jobData),
-    })
-      .then((r) => {
+    }).then((r) => {
         if (r.ok) {
-          setShowContactForm(false);
+          r.json().then((editedJob)=>{
+            setJobData(editedJob) 
+            setShowContactForm(false)});
         } else {
           // don't forget to include an error!!!!!!!!!!!!!!!
-          console.log('Update failed');
+          r.json().then((err)=> console.log(err))
         }
       })
 

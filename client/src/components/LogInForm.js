@@ -51,6 +51,9 @@ function LoginForm({setUser}){
                 <button type="submit">Login</button> 
             </form>
             <Link to={"/signup"}>signup instead</Link>
+            {errors.map((error)=>(
+                <h1 key={error}>{error}</h1>
+            ))}
         </div>
         </div>
     )
