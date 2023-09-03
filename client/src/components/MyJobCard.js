@@ -71,7 +71,6 @@ function MyJobCard({ job_application }) {
   const handleStatusChange = (e) => {
     setSelectedStatus(e.target.value);
   };
-console.log(user)
   function handleDeleteApplication(application){
     const userToUpdate = {...user}
     const updatedUserJobArray = userToUpdate.job_applications.filter((job_application)=> job_application.id !== application)
@@ -80,7 +79,6 @@ console.log(user)
   }
 
   function handleDeleteClick(){
-    // debugger
     fetch(`/users/${user.id}/job_applications/${job_application.id}`,{
         method: "DELETE"
     })

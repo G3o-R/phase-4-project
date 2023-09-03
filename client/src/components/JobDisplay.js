@@ -11,7 +11,11 @@ function JobDisplay({job}){
     const {user, setUser} = useContext(Context)
 
     function handleNewApplication(newApplication){
-        console.log(user)
+        console.log(newApplication)
+        const userToUpdate = {...user}
+        const updatedUserJobArray = [...userToUpdate.job_applications, newApplication]
+        userToUpdate.job_applications = updatedUserJobArray
+        setUser(userToUpdate)
     }
 
     function showContactForm(){
