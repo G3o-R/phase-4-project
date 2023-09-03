@@ -1,4 +1,3 @@
-import "../styles/Home.scss"
 import JobCard from "./JobCard"
 import JobDisplay from "./JobDisplay"
 import { useState } from "react"
