@@ -51,7 +51,6 @@ const ApplyButton = styled.button`
 `;
 
 const ApplyForm = styled.div`
-  display: ${({ show }) => (show ? "block" : "none")};
   margin-top: 10px;
 `;
 
@@ -145,7 +144,7 @@ function JobDisplay({ job }) {
         <ApplyButton onClick={showContactForm}>Interested?</ApplyButton>
       </JobCard>
       <p>{about_the_job}</p>
-      <ApplyForm show={showIsOn}>
+      {showIsOn ? <ApplyForm>
         <p>Please enter your contact information</p>
         <ContactForm onSubmit={handleApplySubmit}>
           <input
@@ -164,7 +163,7 @@ function JobDisplay({ job }) {
           />
           <button type="submit">Complete Application</button>
         </ContactForm>
-      </ApplyForm>
+      </ApplyForm>: null}
       {errors.map((error, index) => (
         <ErrorText key={error}>* {error}</ErrorText>
       ))}
