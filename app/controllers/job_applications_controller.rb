@@ -14,15 +14,6 @@ class JobApplicationsController < ApplicationController
         job_applications.update!(application_params)
         render json: job_applications
     end
-    # def update
-    #     job_application = @current_user.job_applications.find(params[:id])
-      
-    #     if job_application.update(application_params)
-    #       render json: job_application
-    #     else
-    #       render json: { errors: job_application.errors.full_messages }, status: :unprocessable_entity
-    #     end
-    #   end
 
     def destroy 
         job_application = @current_user.job_applications.find(params[:id])

@@ -80,7 +80,6 @@ function LoginForm({ setUser }) {
     let value = e.target.value;
 
     setLoginForm({ ...loginFormData, [name]: value });
-    console.log(loginFormData);
   }
 
   function handleLoginSubmit(e) {

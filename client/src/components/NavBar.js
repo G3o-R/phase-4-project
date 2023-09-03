@@ -93,6 +93,7 @@ function NavBar({ user, setUser }) {
       </NavbarLeft>
       <NavbarRight>
         <NavLinkBig to="/my-jobs">My Jobs</NavLinkBig>
+        <NavLinkBig to="/create-job">Create a Job</NavLinkBig>
         {isLoggedIn ? (
           <NavLinkBig onClick={handleLogout}>Log Out</NavLinkBig>
         ) : (

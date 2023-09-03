@@ -47,7 +47,6 @@ function MyJobs() {
           setErrors={setErrors}
         />
       ));
-console.log(errors.length)
   return (
     <MyJobsContainer>
       {!user ? (

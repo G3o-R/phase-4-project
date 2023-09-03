@@ -8,12 +8,7 @@ import Home from './Home';
 import LoginForm from './LogInForm';
 import SignupForm from './SignupForm';
 import MyJobs from './MyJobs';
-/* 
-implement displaying errors for signing up with invalid data, X
-logging in with invalid data X
-not providing contact information when applying to a job X
-and figure out why editing a job doesn't supply errors when contact info is invalid
-*/
+import CreateJob from './CreateJob';
 
 
 function App() {
@@ -37,7 +32,8 @@ function App() {
       <NavBar user={user} setUser={setUser}/>
       <Routes>
         <Route path="/" element={<Home jobs={jobsData} user={user}/>} />
-        <Route path="my-jobs" element={<MyJobs user={user}/>} />
+        <Route path="/my-jobs" element={<MyJobs user={user}/>} />
+        <Route path="/create-job" element={<CreateJob />} />
         <Route path="/login" element={<LoginForm setUser={setUser}/>} />
         <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
       </Routes>
