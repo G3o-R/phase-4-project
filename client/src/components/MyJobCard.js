@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Context } from './Context/Context';
 
@@ -34,14 +34,38 @@ const CloseButton = styled.button`
 `;
 
 const JobDataContainer = styled.div`
-  margin-left: 5rem; /* Add margin to the left */
-`;
+  margin-left: 5rem;
+  `;
 
 const ContactInfoContainer = styled.div`
   background-color: #f0f0f0;
   border-radius: 5px;
   padding: 10px;
-  margin-right: 5rem; /* Add margin to the right */
+  margin-right: 5rem;
+  cursor: pointer; /* Add cursor pointer for interaction */
+  `;
+
+const ContactInfoForm = styled.form`
+  background-color: #f0f0f0; /* Match the background color of ContactInfoContainer */
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column; /* To stack form elements vertically */
+  align-items: flex-start; /* To align form elements to the left */
+  width: 15rem;
+
+  /* Add Flexbox styles */
+  & > label {
+    display: flex; /* Use flex to make label and input inline */
+    align-items: center; /* Center vertically */
+    margin-bottom: 5px; /* Add spacing between label-input pairs */
+  }
+
+  & > input {
+    margin-left: 10px; /* Add spacing between label and input */
+  }
 `;
 
 const JobStatusSelect = styled.select`
@@ -89,17 +113,79 @@ const UpdateStatusButton = styled.button`
   right: 10px;
 `;
 
+
 function MyJobCard({ job_application }) {
-  const { company, description, email, location, phone_number, position, status } = job_application;
-  const [selectedStatus, setSelectedStatus] = useState(status);
+  const { company, description, location, position, id } = job_application;
   const { user, setUser } = useContext(Context);
-  const [showUpdateDrop, setShowUpdateDrop] = useState(false)
+  const [showUpdateDrop, setShowUpdateDrop] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false)
+  const [jobData, setJobData] = useState({
+    email: "",
+    phone_number: "",
+    status: ""    
+  });
 
-  function handleStatusChange(e){
+  const { email, phone_number, status } = jobData;
+
+  useEffect(() => {
+    if (job_application) {
+      setJobData({
+        email: job_application.email,
+        phone_number: job_application.phone_number,
+        status: job_application.status
+      });
+    }
+  }, [job_application]);
+
+  function handleJobStatusChange(e) {
+    e.preventDefault();
+    const name = e.target.name;
+    const value = e.target.value;
+
+    fetch(`/job_applications/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ [name]: value }),
+    })
+      .then((r) => {
+        if (r.ok) {
+          setJobData({ ...jobData, [name]: value });
+        } else {
+          // don't forget to include an error!!!!!!!!!!!!!!!
+          console.log('Update failed');
+        }
+      })
+    setShowUpdateDrop(false);
+  }
+
+  function handleContactChange(e){
+    const name = e.target.name;
+    const value = e.target.value;
+    setJobData({...jobData,[name]:value})
+  }
+
+  function handleContactEditSubmit(e){
     e.preventDefault()
-    setSelectedStatus(e.target.value);
+    
+    fetch(`/job_applications/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(jobData),
+    })
+      .then((r) => {
+        if (r.ok) {
+          setShowContactForm(false);
+        } else {
+          // don't forget to include an error!!!!!!!!!!!!!!!
+          console.log('Update failed');
+        }
+      })
 
-  };
+  }
 
   function handleDeleteApplication(application) {
     const userToUpdate = { ...user };
@@ -120,23 +206,38 @@ function MyJobCard({ job_application }) {
     <JobCardContainer>
       <CloseButton onClick={handleDeleteClick}>X</CloseButton>
       <JobDataContainer>
-        {showUpdateDrop ?
-        <JobStatusSelect value={selectedStatus} onChange={handleStatusChange}>
-          <option value="Applied">Applied</option>
-          <option value="No Longer Interested">No Longer Interested</option>
-          <option value="Offer Received">Offer Received</option>
-          <option value="Not Selected by Employer">Not Selected by Employer</option>
-        </JobStatusSelect> : <JobStatus>Status: {status}</JobStatus> }
+        {showUpdateDrop ? (
+          <JobStatusSelect value={status} name="status" onChange={handleJobStatusChange}>
+            <option value="Applied">Applied</option>
+            <option value="No Longer Interested">No Longer Interested</option>
+            <option value="Offer Received">Offer Received</option>
+            <option value="Not Selected by Employer">Not Selected by Employer</option>
+          </JobStatusSelect>
+        ) : (
+          <JobStatus>Status: {status}</JobStatus>
+        )}
         <JobDescription>{description}</JobDescription>
         <JobInfo>Position: {position}</JobInfo>
         <JobInfo>Company: {company}</JobInfo>
         <JobInfo>Location: {location}</JobInfo>
       </JobDataContainer>
-      <ContactInfoContainer onDoubleClick={()=>console.log(`double clicked ${job_application.id}`)}>
+      {showContactForm ? 
+      <ContactInfoForm onDoubleClick={()=>setShowContactForm(!showContactForm)}>
+      <label>
+        Email:
+        <input type="text" name="email" value={email} onChange={handleContactChange} />
+      </label>
+      <label>
+        Phone:
+        <input type="text" name="phone_number" value={phone_number} onChange={handleContactChange} />
+      </label>
+      <button onClick={handleContactEditSubmit}>Edit Contact Information</button>
+    </ContactInfoForm>:
+      <ContactInfoContainer onDoubleClick={() => setShowContactForm(!showContactForm)}>
         <p>Email: {email}</p>
         <p>Phone: {phone_number}</p>
-      </ContactInfoContainer>
-      <UpdateStatusButton onClick={()=>setShowUpdateDrop(!showUpdateDrop)}>Update Status</UpdateStatusButton>
+      </ContactInfoContainer>}
+      <UpdateStatusButton onClick={() => setShowUpdateDrop(!showUpdateDrop)}>Update Status</UpdateStatusButton>
     </JobCardContainer>
   );
 }
