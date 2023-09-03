@@ -10,14 +10,21 @@ class JobApplicationsController < ApplicationController
     end
 
     def update 
-        job_application = Job.find(params[:id])
-        job_application.update(application_params)
-        rendder json: job_application
-        byebug
+        job_applications = @current_user.job_applications.find(params[:id])
+        job_applications.update!(application_params)
+        render json: job_applications
     end
+    # def update
+    #     job_application = @current_user.job_applications.find(params[:id])
+      
+    #     if job_application.update(application_params)
+    #       render json: job_application
+    #     else
+    #       render json: { errors: job_application.errors.full_messages }, status: :unprocessable_entity
+    #     end
+    #   end
 
     def destroy 
-        # byebug
         job_application = @current_user.job_applications.find(params[:id])
         job_application.destroy
         head :no_content
@@ -25,7 +32,7 @@ class JobApplicationsController < ApplicationController
 
     private
     def application_params
-        params.permit(:email, :phone_number, :job_id)
+        params.permit(:email, :phone_number, :status)
     end
 
 end
