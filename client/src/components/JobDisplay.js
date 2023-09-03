@@ -1,15 +1,17 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useNavigate } from "react-router"
+import { Context } from "./Context/Context"
 
-function JobDisplay({job, user, }){
+function JobDisplay({job}){
     const {description, pay, location, position, company, about_the_job} = job
     const [showIsOn, setShowIsOn] = useState(false)
     const [email, setEmail] = useState("")
     const [phone_number, setPhoneNumber] = useState("")
     const navigate = useNavigate()
+    const {user, setUser} = useContext(Context)
 
     function handleNewApplication(newApplication){
-        console.log(newApplication)
+        console.log(user)
     }
 
     function showContactForm(){

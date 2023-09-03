@@ -13,10 +13,12 @@ class JobApplicationsController < ApplicationController
         job_application = Job.find(params[:id])
         job_application.update(application_params)
         rendder json: job_application
+        byebug
     end
 
     def destroy 
-        job_application = Job.find(params[:id])
+        # byebug
+        job_application = @current_user.job_applications.find(params[:id])
         job_application.destroy
         head :no_content
     end
