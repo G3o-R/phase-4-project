@@ -1,15 +1,16 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
 
-function JobDisplay({job, user}){
+function JobDisplay({job, user, }){
     const {description, pay, location, position, company, about_the_job} = job
-    
     const [showIsOn, setShowIsOn] = useState(false)
     const [email, setEmail] = useState("")
     const [phone_number, setPhoneNumber] = useState("")
-    
-
     const navigate = useNavigate()
+
+    function handleNewApplication(newApplication){
+        console.log(newApplication)
+    }
 
     function showContactForm(){
         if (user){
@@ -32,9 +33,11 @@ function JobDisplay({job, user}){
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(contactData),
         })
-        .then((r)=>r.json())
-        .then((job)=>console.log(job))
-        console.log(contactData)
+        .then((r)=>{ if (r.ok){
+            r.json().then((application)=>handleNewApplication(application))
+        } else{
+            r.json().then((err)=>console.log(err))
+        }})
     }
 
     return(<div style={{

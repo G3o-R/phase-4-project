@@ -1,7 +1,7 @@
 import '../styles/App.scss';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { BrowserRouter, Routes,Route} from 'react-router-dom';
+import { Context } from './Context/Context';
 
 import NavBar from './NavBar';
 import Home from './Home';
@@ -11,8 +11,7 @@ import MyJobs from './MyJobs';
 
 
 function App() {
-  const [jobsData, setJobs] = useState([])
-  const [user, setUser] = useState(null)
+  const {user, setUser, jobsData, setJobs} = useContext(Context)
 
   useEffect(()=>{
     fetch("/jobs")

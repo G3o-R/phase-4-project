@@ -16,9 +16,7 @@ function MyJobs({user}){
     const displayMyJobCards =
      !user ? null : user.job_applications.map((job_application)=>
     <MyJobCard job_application={job_application}
-     key={job_application.id}
-     showIsOn={showIsOn} 
-     setShowIsOn={setShowIsOn}/>)
+     key={job_application.id}/>)
      console.log(showIsOn)
 
      
