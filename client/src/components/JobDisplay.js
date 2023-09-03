@@ -1,85 +1,175 @@
-import { useState, useContext } from "react"
-import { useNavigate } from "react-router"
-import { Context } from "./Context/Context"
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router";
+import { Context } from "./Context/Context";
+import styled from "styled-components";
 
-function JobDisplay({job}){
-    const {description, pay, location, position, company, about_the_job} = job
-    const [showIsOn, setShowIsOn] = useState(false)
-    const [email, setEmail] = useState("")
-    const [phone_number, setPhoneNumber] = useState("")
-    const navigate = useNavigate()
-    const {user, setUser} = useContext(Context)
-    const [errors, setErrors] = useState([])
+const JobContainer = styled.div`
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 25rem;
+  height: 60rem;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 
-    function handleNewApplication(newApplication){
-        const userToUpdate = {...user}
-        const updatedUserJobArray = [...userToUpdate.job_applications, newApplication]
-        userToUpdate.job_applications = updatedUserJobArray
-        setUser(userToUpdate)
+const JobCard = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const JobTitle = styled.h3`
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+`;
+
+const JobInfo = styled.p`
+  font-size: 16px;
+  color: #666;
+  margin: 4px 0;
+`;
+
+const ApplyButton = styled.button`
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const ApplyForm = styled.div`
+  display: ${({ show }) => (show ? "block" : "none")};
+  margin-top: 10px;
+`;
+
+const ContactForm = styled.form`
+  display: flex;
+  flex-direction: column;
+
+  p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  input {
+    font-size: 16px;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+`;
+
+const ErrorText = styled.p`
+  color: #ff0000;
+  font-weight: bold;
+`;
+
+function JobDisplay({ job }) {
+  const { description, pay, location, position, company, about_the_job } = job;
+  const [showIsOn, setShowIsOn] = useState(false);
+  const [email, setEmail] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(Context);
+  const [errors, setErrors] = useState([]);
+
+  function handleNewApplication(newApplication) {
+    const userToUpdate = { ...user };
+    const updatedUserJobArray = [...userToUpdate.job_applications, newApplication];
+    userToUpdate.job_applications = updatedUserJobArray;
+    setUser(userToUpdate);
+  }
+
+  function showContactForm() {
+    if (user) {
+      setShowIsOn(!showIsOn);
+    } else {
+      alert("You have to login");
+      navigate("/login");
     }
+  }
 
-    function showContactForm(){
-        if (user){
-            setShowIsOn(!showIsOn)
+  function handleApplySubmit(e) {
+    e.preventDefault();
+    const contactData = {
+      email: email,
+      phone_number: phone_number,
+      job_id: job.id,
+    };
+    fetch("/job_applications", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(contactData),
+    })
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((application) => handleNewApplication(application));
         } else {
-            alert("you have to login")
-            navigate("/login")
+          r.json().then((err) => setErrors(err.errors));
         }
-    }
+      });
+  }
 
-    function handleApplySubmit(e){
-        e.preventDefault()
-        const contactData = {
-            email: email,
-            phone_number: phone_number,
-            job_id: job.id
-        }
-        fetch("/job_applications",{
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(contactData),
-        })
-        .then((r)=>{ if (r.ok){
-            r.json().then((application)=>handleNewApplication(application))
-        } else{
-            r.json().then((err)=>setErrors(err.errors))
-        }})
-    }
-
-    return(<div style={{
-    border: "1px solid black",
-    borderRadius:"10px 10px 10px 10px",
-    width:"25rem",
-    height: "60rem",
-    }}>
-        <div className="job-card" style={displayStyles}>
-            <h3 style={{marginBottom:"2px"}}>{position}</h3>
-            <p style={{marginBottom:"2px",marginTop:"0"}}>{description}</p>
-            <p style={{marginBottom:"2px",marginTop:"0"}}>{company}</p>
-            <p style={{marginBottom:"2px",marginTop:"0"}}>{location}</p>
-            <p style={{marginBottom:"2px",marginTop:"0"}}>{pay}</p>
-            <button onClick={showContactForm} className="apply-now" style={{width:"80px"}}>Interested?</button>
-        </div>
-            <p>{about_the_job}</p>
-            {showIsOn? <div className="apply-form">
-                <p>please enter your contact information</p>
-                <form className="contact-from" onSubmit={handleApplySubmit}>
-                    <input type="text" name="email" value={email} placeholder="email..." onChange={(e)=>setEmail(e.target.value)} />
-                    <input type="text" name="phone_number" value={phone_number} placeholder="phone number..." onChange={(e)=>setPhoneNumber(e.target.value)} />
-                    <button type="submit">Complete Application</button>
-                </form>
-            </div> : null}
-            {errors.map((error)=>(<p>{error}</p>))}
-    </div>)
+  return (
+    <JobContainer>
+      <JobCard>
+        <JobTitle>{position}</JobTitle>
+        <JobInfo>{description}</JobInfo>
+        <JobInfo>{company}</JobInfo>
+        <JobInfo>{location}</JobInfo>
+        <JobInfo>{pay}</JobInfo>
+        <ApplyButton onClick={showContactForm}>Interested?</ApplyButton>
+      </JobCard>
+      <p>{about_the_job}</p>
+      <ApplyForm show={showIsOn}>
+        <p>Please enter your contact information</p>
+        <ContactForm onSubmit={handleApplySubmit}>
+          <input
+            type="text"
+            name="email"
+            value={email}
+            placeholder="Email..."
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            name="phone_number"
+            value={phone_number}
+            placeholder="Phone number..."
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+          <button type="submit">Complete Application</button>
+        </ContactForm>
+      </ApplyForm>
+      {errors.map((error, index) => (
+        <ErrorText key={error}>* {error}</ErrorText>
+      ))}
+    </JobContainer>
+  );
 }
 
-const displayStyles = {
-    display:"flex",
-    flexDirection:"column",
-    alignItems:"flex-start",
-    border: "1px solid black",
-    borderRadius: "10px 10px 0px 0px",
-    paddingLeft:"10px"
-}
-
-export default JobDisplay
+export default JobDisplay;

@@ -1,46 +1,52 @@
-import JobCard from "./JobCard"
-import JobDisplay from "./JobDisplay"
-import { useState } from "react"
-import { useEffect } from "react"
+import JobCard from "./JobCard";
+import JobDisplay from "./JobDisplay";
+import { useState, useEffect } from "react";
+import styled from "styled-components"; // Import styled-components
 
-function Home({jobs}){
-    const [jobDisplay, setJobDisplay] = useState(false)
+const HomeContainer = styled.div`
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+`;
 
-    useEffect(()=>{
-        if (jobs[0] && jobs[0].id){
-            setJobDisplay(jobs.find((job)=>job.id === jobs[0].id))
-        }
-    },[jobs])
-    
-    // console.log(jobDisplay)
-    const jobsToDisplay = jobs.map((job)=>(
-        <JobCard job={job} key={job.id} setIndex={setJobDisplay}/>
-    ))
+const JobCollection = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 10px;
+`;
 
+const JobDisplayContainer = styled.div`
+  position: sticky;
+  top: 20px; /* Adjust the top value as needed */
+  border-radius: 10px;
+  width: 25rem;
+  height: 60rem;
+`; 
 
-    
-    
-    return(
-        <div className="Home" style={homeContainerStyle}>
-            <div className="job-collection" style={collectionStyle}>
-                {jobsToDisplay}
-            </div>
-                {!jobDisplay ? <h1>loading...</h1> : <JobDisplay job={jobDisplay}/>}
-        </div>
-    )
+function Home({ jobs }) {
+  const [jobDisplay, setJobDisplay] = useState(false);
+
+  useEffect(() => {
+    if (jobs[0] && jobs[0].id) {
+      setJobDisplay(jobs.find((job) => job.id === jobs[0].id));
+    }
+  }, [jobs]);
+
+  const jobsToDisplay = jobs.map((job) => (
+    <JobCard job={job} key={job.id} setIndex={setJobDisplay} />
+  ));
+
+  return (
+    <HomeContainer>
+      <JobCollection>{jobsToDisplay}</JobCollection>
+      {!jobDisplay ? <h1>loading...</h1> : (
+        <JobDisplayContainer>
+          <JobDisplay job={jobDisplay} />
+        </JobDisplayContainer>
+      )}
+    </HomeContainer>
+  );
 }
 
-export default Home
-
-const collectionStyle = {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    justifyItems: "center",
-    gap:"10px"
-}
-
-const homeContainerStyle = {
-    display:"flex",
-    gap:"4rem",
-    justifyContent:"center"
-}
+export default Home;

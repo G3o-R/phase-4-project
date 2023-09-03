@@ -42,29 +42,28 @@ const ContactInfoContainer = styled.div`
   border-radius: 5px;
   padding: 10px;
   margin-right: 5rem;
-  cursor: pointer; /* Add cursor pointer for interaction */
+  cursor: pointer;
   `;
 
 const ContactInfoForm = styled.form`
-  background-color: #f0f0f0; /* Match the background color of ContactInfoContainer */
+  background-color: #f0f0f0;
   border-radius: 5px;
   padding: 10px;
   margin-right: 5rem;
   cursor: pointer;
   display: flex;
-  flex-direction: column; /* To stack form elements vertically */
-  align-items: flex-start; /* To align form elements to the left */
+  flex-direction: column;
+  align-items: flex-start;
   width: 15rem;
 
-  /* Add Flexbox styles */
   & > label {
-    display: flex; /* Use flex to make label and input inline */
-    align-items: center; /* Center vertically */
-    margin-bottom: 5px; /* Add spacing between label-input pairs */
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
   }
 
   & > input {
-    margin-left: 10px; /* Add spacing between label and input */
+    margin-left: 10px;
   }
 `;
 
