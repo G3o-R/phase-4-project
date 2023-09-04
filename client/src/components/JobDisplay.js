@@ -88,7 +88,7 @@ const ErrorText = styled.p`
 `;
 
 function JobDisplay({ job }) {
-  const { description, pay, location, position, company, about_the_job } = job;
+  const { description, pay, location, position, company, about_the_job, id } = job;
   const [showIsOn, setShowIsOn] = useState(false);
   const [email, setEmail] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
@@ -117,7 +117,7 @@ function JobDisplay({ job }) {
     const contactData = {
       email: email,
       phone_number: phone_number,
-      job_id: job.id,
+      job_id: id
     };
     fetch("/job_applications", {
       method: "POST",

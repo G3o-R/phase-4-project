@@ -23,7 +23,7 @@ class JobApplicationsController < ApplicationController
 
     private
     def application_params
-        params.permit(:email, :phone_number, :status)
+        params.permit(:email, :phone_number,:job_id, :status)
     end
 
 end
