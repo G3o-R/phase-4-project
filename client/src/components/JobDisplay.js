@@ -126,7 +126,9 @@ function JobDisplay({ job }) {
     })
       .then((r) => {
         if (r.ok) {
-          r.json().then((application) => handleNewApplication(application));
+          r.json().then((application) => {
+            setErrors([])
+            handleNewApplication(application)});
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
