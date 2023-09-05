@@ -11,7 +11,7 @@ puts "seeding..."
 Job.create!([
   {
     description: "Software Engineer",
-    pay: 80000.0,
+    pay: 80,
     location: "Santa Monica California",
     position: "Full Stack",
     company: "TechCo",
@@ -19,7 +19,7 @@ Job.create!([
   },
   {
     description: "Graphic Designer",
-    pay: 50000.0,
+    pay: 50,
     location: "Santa Monica California",
     position: "UI/UX",
     company: "DesignHub",
@@ -27,7 +27,7 @@ Job.create!([
   },
   {
     description: "Marketing Manager",
-    pay: 70000.0,
+    pay: 70,
     location: "Remote",
     position: "Marketing",
     company: "AdAgency",
@@ -35,7 +35,7 @@ Job.create!([
   },
   {
     description: "Data Analyst",
-    pay: 60000.0,
+    pay: 60,
     location: "Santa Monica California",
     position: "Analytics",
     company: "DataCorp",
@@ -43,7 +43,7 @@ Job.create!([
   },
   {
     description: "Sales Representative",
-    pay: 55000.0,
+    pay: 55,
     location: "Santa Monica California",
     position: "Sales",
     company: "SalesCo",
@@ -51,7 +51,7 @@ Job.create!([
   },
   {
     description: "Product Manager",
-    pay: 75000.0,
+    pay: 75,
     location: "Santa Monica California",
     position: "Product",
     company: "ProductTech",
@@ -59,7 +59,7 @@ Job.create!([
   },
   {
     description: "Content Writer",
-    pay: 45000.0,
+    pay: 45,
     location: "Hybrid",
     position: "Content",
     company: "ContentCo",
