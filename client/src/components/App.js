@@ -4,11 +4,11 @@ import { BrowserRouter, Routes,Route} from 'react-router-dom';
 import { Context } from './Context/Context';
 
 import NavBar from './NavBar';
-import Home from './Home';
-import LoginForm from './LogInForm';
-import SignupForm from './SignupForm';
-import MyJobs from './MyJobs';
-import CreateJob from './CreateJob';
+import Home from '../Pages/Home';
+import LoginForm from '../Pages/LogInForm';
+import SignupForm from '../Pages/SignupForm';
+import MyJobs from '../Pages/MyJobs';
+import CreateJob from '../Pages/CreateJob';
 
 
 function App() {

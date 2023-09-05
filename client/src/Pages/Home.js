@@ -1,5 +1,5 @@
-import JobCard from "./JobCard";
-import JobDisplay from "./JobDisplay";
+import JobCard from "../components/JobCard";
+import JobDisplay from "../components/JobDisplay";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
@@ -25,7 +25,7 @@ const JobDisplayContainer = styled.div`
 `; 
 
 function Home({ jobs }) {
-  const [jobDisplay, setJobDisplay] = useState(false);
+  const [jobDisplay, setJobDisplay] = useState([]);
 
   useEffect(() => {
     if (jobs[0] && jobs[0].id) {

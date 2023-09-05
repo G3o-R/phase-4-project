@@ -1,7 +1,7 @@
-import MyJobCard from "./MyJobCard";
+import MyJobCard from "../components/MyJobCard";
 import styled from 'styled-components';
 import { useContext, useState } from "react";
-import { Context } from "./Context/Context";
+import { Context } from "../components/Context/Context";
 
 const MyJobsContainer = styled.div`
   display: flex;

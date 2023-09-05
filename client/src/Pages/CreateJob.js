@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { Context } from "./Context/Context";
+import { Context } from "../components/Context/Context";
 
 const CreateJobContainer = styled.div`
   background-color: #ffffff;
