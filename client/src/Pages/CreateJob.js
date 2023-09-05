@@ -12,7 +12,7 @@ const CreateJobContainer = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
   min-height: 60rem;
 `;
 
@@ -37,7 +37,7 @@ const FormInput = styled.input`
   margin: 0.5rem 0;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
-  width: 100%;
+  width: 95%;
 `;
 
 const FormTextarea = styled.textarea`
@@ -46,7 +46,7 @@ const FormTextarea = styled.textarea`
   margin: 0.5rem 0;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
-  width: 100%;
+  width: 95%;
   min-height: 30rem;
   resize: none;
 `;
@@ -75,7 +75,7 @@ const ErrorText = styled.p`
 
 const FormAndErrorsContainer = styled.div`
   width: 70rem;
-  margin: 0 auto; /* Center the container horizontally */
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
