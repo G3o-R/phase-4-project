@@ -1,5 +1,5 @@
 import '../styles/App.scss';
-import { useContext, useEffect } from 'react';
+import { useContext} from 'react';
 import { BrowserRouter, Routes,Route} from 'react-router-dom';
 import { Context } from './Context/Context';
 
@@ -12,19 +12,9 @@ import CreateJob from '../Pages/CreateJob';
 
 
 function App() {
-  const {user, setUser, jobsData, setJobs} = useContext(Context)
+  const {user, setUser, jobsData} = useContext(Context)
 
-  useEffect(()=>{
-    fetch("/jobs")
-    .then((res)=>res.json())
-    .then(jobs=>setJobs(jobs))
 
-    fetch("/me").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => setUser(user))
-      }
-    })
-  },[])
 
   return (
     <div className="App">
