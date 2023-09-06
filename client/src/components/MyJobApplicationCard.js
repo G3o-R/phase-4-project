@@ -92,7 +92,7 @@ const UpdateStatusButton = styled.button`
 `;
 
 
-function MyJobCard({ job_application, setErrors }) {
+function MyJobApplicationCard({ job_application, setErrors }) {
   const { company, description, location, position, id } = job_application;
   const { user, setUser } = useContext(Context);
   const [showUpdateDrop, setShowUpdateDrop] = useState(false);
@@ -161,18 +161,23 @@ function MyJobCard({ job_application, setErrors }) {
   }
 
   function handleDeleteApplication(application) {
+    // debugger
     const userToUpdate = { ...user };
-    const updatedUserJobArray = userToUpdate.job_applications.filter(
-      (job_application) => job_application.id !== application
+    const updatedUserJobApplicationArray = userToUpdate.job_applications.filter(
+      (job_application) => job_application.id !== application.id
     );
-    userToUpdate.job_applications = updatedUserJobArray;
+    userToUpdate.job_applications = updatedUserJobApplicationArray;
+    const updatedUserJobsArray = userToUpdate.jobs.filter(
+      (job)=> job.id !== application.job_id
+    )
+    userToUpdate.jobs = updatedUserJobsArray
     setUser(userToUpdate);
   }
 
   function handleDeleteClick() {
     fetch(`/users/${user.id}/job_applications/${job_application.id}`, {
       method: 'DELETE',
-    }).then(() => handleDeleteApplication(job_application.id));
+    }).then(() => handleDeleteApplication(job_application));
   }
 
   return (
@@ -213,4 +218,4 @@ function MyJobCard({ job_application, setErrors }) {
   );
 }
 
-export default MyJobCard;
+export default MyJobApplicationCard;

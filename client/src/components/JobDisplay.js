@@ -98,8 +98,10 @@ function JobDisplay({ job }) {
 
   function handleNewApplication(newApplication) {
     const userToUpdate = { ...user };
-    const updatedUserJobArray = [...userToUpdate.job_applications, newApplication];
-    userToUpdate.job_applications = updatedUserJobArray;
+    const updatedUserJobApplicationArray = [...userToUpdate.job_applications, newApplication];
+    userToUpdate.job_applications = updatedUserJobApplicationArray;
+    const updatedUserJobArray = [...userToUpdate.jobs, job]
+    userToUpdate.jobs = updatedUserJobArray
     setUser(userToUpdate);
   }
 

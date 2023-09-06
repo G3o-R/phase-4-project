@@ -1,5 +1,5 @@
 class JobApplicationSerializer < ActiveModel::Serializer
-  attributes :id, :email, :phone_number, :status, :location, :company, :description, :position
+  attributes :id, :email, :phone_number, :status, :location, :company, :description, :position, :job_id
   belongs_to :user
 
   def description

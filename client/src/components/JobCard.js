@@ -34,11 +34,17 @@ const JobInfo = styled.p`
   color: #888;
 `;
 
-function JobCard({ job, setIndex }) {
+function JobCard({ job, setIndex,clickEnabled=true }) {
   const { company, description, location, pay, position } = job;
 
+  const handleClick = () =>{
+    if(clickEnabled){
+      setIndex(job)
+    }
+  }
+
   return (
-    <JobCardContainer onClick={() => setIndex(job)}>
+    <JobCardContainer onClick={handleClick}>
       <JobTitle>{position}</JobTitle>
       <JobDescription>{description}</JobDescription>
       <JobInfo>{company}</JobInfo>
