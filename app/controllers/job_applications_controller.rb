@@ -1,5 +1,4 @@
 class JobApplicationsController < ApplicationController
-    before_action :authorize
     def create
         job_applications = @current_user.job_applications.create!(application_params)
         render json: job_applications
