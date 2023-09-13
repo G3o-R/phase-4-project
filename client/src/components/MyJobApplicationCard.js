@@ -161,7 +161,6 @@ function MyJobApplicationCard({ job_application, setErrors }) {
   }
 
   function handleDeleteApplication(application) {
-    // debugger
     const userToUpdate = { ...user };
     const updatedUserJobApplicationArray = userToUpdate.job_applications.filter(
       (job_application) => job_application.id !== application.id
@@ -175,7 +174,7 @@ function MyJobApplicationCard({ job_application, setErrors }) {
   }
 
   function handleDeleteClick() {
-    fetch(`/users/${user.id}/job_applications/${job_application.id}`, {
+    fetch(`/job_applications/${job_application.id}`, {
       method: 'DELETE',
     }).then(() => handleDeleteApplication(job_application));
   }
