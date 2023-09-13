@@ -144,7 +144,7 @@ function JobDisplay({ job }) {
         <JobInfo>{description}</JobInfo>
         <JobInfo>{company}</JobInfo>
         <JobInfo>{location}</JobInfo>
-        <JobInfo>{pay}</JobInfo>
+        <JobInfo>${pay}/hr</JobInfo>
         <ApplyButton onClick={showContactForm}>Interested?</ApplyButton>
       </JobCard>
       <p>{about_the_job}</p>
