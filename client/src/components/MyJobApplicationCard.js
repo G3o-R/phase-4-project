@@ -97,18 +97,18 @@ function MyJobApplicationCard({ job_application, setErrors }) {
   const { user, setUser } = useContext(Context);
   const [showUpdateDrop, setShowUpdateDrop] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false)
-  const [jobData, setJobData] = useState({
+  const [jobApplicationFormData, setJobApplicationFormData] = useState({
     email: "",
     phone_number: "",
     status: "",
     id  
   });
 
-  const { email, phone_number, status } = jobData;
+  const { email, phone_number, status } = jobApplicationFormData;
 
   useEffect(() => {
     if (job_application) {
-      setJobData({
+      setJobApplicationFormData({
         email: job_application.email,
         phone_number: job_application.phone_number,
         status: job_application.status
@@ -130,7 +130,7 @@ function MyJobApplicationCard({ job_application, setErrors }) {
     })
       .then((r) => {
         if (r.ok) {
-          setJobData({ ...jobData, [name]: value });
+          setJobApplicationFormData({ ...jobApplicationFormData, [name]: value });
         } else {
           alert("wasn't able to update job status")
         }
@@ -146,11 +146,11 @@ function MyJobApplicationCard({ job_application, setErrors }) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(jobData),
+      body: JSON.stringify(jobApplicationFormData),
     }).then((r) => {
         if (r.ok) {
           r.json().then((editedJob)=>{
-            setJobData(editedJob) 
+            setJobApplicationFormData(editedJob) 
             setShowContactForm(false)})
             setErrors([])
         } else {
@@ -200,8 +200,8 @@ function MyJobApplicationCard({ job_application, setErrors }) {
       </JobDataContainer>
       {showContactForm ? (
         <EditContactForm
-          jobData={jobData}
-          setJobData={setJobData}
+          jobApplicationFormData={jobApplicationFormData}
+          setJobApplicationFormData={setJobApplicationFormData}
           setShowContactForm={setShowContactForm}
           showContactForm={showContactForm}
           handleContactEditSubmit={handleContactEditSubmit}

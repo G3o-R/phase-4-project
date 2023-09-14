@@ -22,12 +22,12 @@ const ContactInfoForm = styled.form`
   }
 `;
 
-function EditContactForm({ jobData, setJobData, setShowContactForm, showContactForm, handleContactEditSubmit }){
-    const {email, phone_number} = jobData
+function EditContactForm({ jobApplicationFormData, setJobApplicationFormData, setShowContactForm, showContactForm, handleContactEditSubmit }){
+    const {email, phone_number} = jobApplicationFormData
       function handleContactChange(e){
     const name = e.target.name;
     const value = e.target.value;
-    setJobData({...jobData,[name]:value})
+    setJobApplicationFormData({...jobApplicationFormData,[name]:value})
   }
 
   return(

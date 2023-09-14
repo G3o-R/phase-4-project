@@ -38,7 +38,7 @@ function MyJobApplications() {
   const { user } = useContext(Context);
   const [errors, setErrors] = useState([]);
 
-  const displayMyJobCards = !user
+  const displayMyJobApplicationCards = !user
     ? null
     : user.job_applications.map((job_application) => (
         <MyJobApplicationCard
@@ -54,7 +54,7 @@ function MyJobApplications() {
       ) : user.job_applications.length === 0 ? (
         <Heading>Start Applying!!!</Heading>
       ) : (
-        displayMyJobCards
+        displayMyJobApplicationCards
       )}
       {errors.length > 0 && (
         <ErrorsContainer>
