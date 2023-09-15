@@ -22,7 +22,7 @@ const ContactInfoForm = styled.form`
   }
 `;
 
-function EditContactForm({ jobApplicationFormData, setJobApplicationFormData, setShowContactForm, showContactForm, handleContactEditSubmit }){
+function EditContactForm({ jobApplicationFormData, setJobApplicationFormData, setShowContactForm, showContactForm, handleContactUpdateSubmit }){
     const {email, phone_number} = jobApplicationFormData
       function handleContactChange(e){
     const name = e.target.name;
@@ -40,7 +40,7 @@ function EditContactForm({ jobApplicationFormData, setJobApplicationFormData, se
         Phone:
         <input type="text" name="phone_number" value={phone_number} onChange={handleContactChange} />
       </label>
-      <button onClick={handleContactEditSubmit}>Edit Contact Information</button>
+      <button onClick={handleContactUpdateSubmit}>Edit Contact Information</button>
     </ContactInfoForm>
     )
 }

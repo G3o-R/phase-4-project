@@ -112,7 +112,6 @@ function CreateJob() {
 
   function handleCreateJobSubmit(e) {
     e.preventDefault();
-    console.log(jobFormData);
     fetch("/jobs", {
       method: "POST",
       headers: {

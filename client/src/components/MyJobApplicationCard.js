@@ -97,6 +97,7 @@ function MyJobApplicationCard({ job_application, setErrors }) {
   const { user, setUser } = useContext(Context);
   const [showUpdateDrop, setShowUpdateDrop] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false)
+
   const [jobApplicationFormData, setJobApplicationFormData] = useState({
     email: "",
     phone_number: "",
@@ -130,7 +131,7 @@ function MyJobApplicationCard({ job_application, setErrors }) {
     })
       .then((r) => {
         if (r.ok) {
-          setJobApplicationFormData({ ...jobApplicationFormData, [name]: value });
+          handleUpdateApplication({ ...jobApplicationFormData, [name]: value });
         } else {
           alert("wasn't able to update job status")
         }
@@ -138,9 +139,15 @@ function MyJobApplicationCard({ job_application, setErrors }) {
     setShowUpdateDrop(false);
   }
 
-  function handleContactEditSubmit(e){
+  function handleUpdateApplication(job){
+    const userToUpdate = { ...user };
+    const i = userToUpdate.job_applications.findIndex((application)=>application.id == job.id)
+    userToUpdate.job_applications[i] = job
+    setUser(userToUpdate);
+  }
+
+  function handleContactUpdateSubmit(e){
     e.preventDefault()
-    
     fetch(`/job_applications/${id}`, {
       method: 'PATCH',
       headers: {
@@ -150,7 +157,7 @@ function MyJobApplicationCard({ job_application, setErrors }) {
     }).then((r) => {
         if (r.ok) {
           r.json().then((editedJob)=>{
-            setJobApplicationFormData(editedJob) 
+            handleUpdateApplication(editedJob) 
             setShowContactForm(false)})
             setErrors([])
         } else {
@@ -204,7 +211,7 @@ function MyJobApplicationCard({ job_application, setErrors }) {
           setJobApplicationFormData={setJobApplicationFormData}
           setShowContactForm={setShowContactForm}
           showContactForm={showContactForm}
-          handleContactEditSubmit={handleContactEditSubmit}
+          handleContactUpdateSubmit={handleContactUpdateSubmit}
         />
       ) : (
         <ContactInfoContainer onDoubleClick={() => setShowContactForm(!showContactForm)}>
