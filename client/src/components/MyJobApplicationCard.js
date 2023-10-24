@@ -102,7 +102,7 @@ function MyJobApplicationCard({ job_application, setErrors }) {
     email: "",
     phone_number: "",
     status: "",
-    id  
+    id
   });
 
   const { email, phone_number, status } = jobApplicationFormData;
@@ -131,7 +131,8 @@ function MyJobApplicationCard({ job_application, setErrors }) {
     })
       .then((r) => {
         if (r.ok) {
-          handleUpdateApplication({ ...jobApplicationFormData, [name]: value });
+          setJobApplicationFormData({ ...jobApplicationFormData, [name]: value })
+          handleUpdateApplication({ ...job_application, [name]: value });
         } else {
           alert("wasn't able to update job status")
         }
@@ -141,9 +142,10 @@ function MyJobApplicationCard({ job_application, setErrors }) {
 
   function handleUpdateApplication(job){
     const userToUpdate = { ...user };
-    const i = userToUpdate.job_applications.findIndex((application)=>application.id == job.id)
+    const i = userToUpdate.job_applications.findIndex((application)=>application.id === job.id)
     userToUpdate.job_applications[i] = job
     setUser(userToUpdate);
+    
   }
 
   function handleContactUpdateSubmit(e){
